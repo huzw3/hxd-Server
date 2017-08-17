@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里namespace必须是IUserMapper接口的路径” -->
+<mapper namespace="com.hxd.busi.dao.IUserDemoMapperDAO">
+	<resultMap id="getUsersMap" type="com.hxd.bean.common.UserDemo">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+	</resultMap>
+
+	<!--<select id="getUser" parameterType="int" resultType="com.hxd.bean.common.UserDemo">-->
+		<!--select * from users where name=#{name}-->
+	<!--</select>-->
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="UserDemo">
+        insert into users(name,age) values(#{name},#{age})
+    </insert>
+	<select id="getUser" parameterType="int" resultMap="getUsersMap">
+		select * from users where name=#{name}
+	</select>
+</mapper>
